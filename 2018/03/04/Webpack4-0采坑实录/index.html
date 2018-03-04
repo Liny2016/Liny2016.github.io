@@ -100,26 +100,28 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT,梧桐树" />
+  <meta name="keywords" content="webpack," />
 
 
-<meta name="description" content="大道至简,开发由我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梧桐树">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="踩坑实录（1）- webpack4.0尝鲜升级引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了 原因是这个4.0版本做了下面重大变化  npm scripts run 不起来了，新版中将 webpack 命令行工具拆分">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Webpack4.0采坑实录]">
+<meta property="og:url" content="http://yoursite.com/2018/03/04/Webpack4-0采坑实录/index.html">
 <meta property="og:site_name" content="梧桐树">
-<meta property="og:description" content="大道至简,开发由我">
+<meta property="og:description" content="踩坑实录（1）- webpack4.0尝鲜升级引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了 原因是这个4.0版本做了下面重大变化  npm scripts run 不起来了，新版中将 webpack 命令行工具拆分">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-04T07:52:56.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="梧桐树">
-<meta name="twitter:description" content="大道至简,开发由我">
+<meta name="twitter:title" content="[Webpack4.0采坑实录]">
+<meta name="twitter:description" content="踩坑实录（1）- webpack4.0尝鲜升级引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了 原因是这个4.0版本做了下面重大变化  npm scripts run 不起来了，新版中将 webpack 命令行工具拆分">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/04/Webpack4-0采坑实录/"/>
 
 
 
@@ -128,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>梧桐树</title>
+  <title>[Webpack4.0采坑实录] | 梧桐树</title>
   
 
 
@@ -185,8 +187,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,9 +270,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,9 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/04/Webpack4-0采坑实录/" itemprop="url">[Webpack4.0采坑实录]</a></h1>
+          <h1 class="post-title" itemprop="name headline">[Webpack4.0采坑实录]</h1>
         
 
         <div class="post-meta">
@@ -355,7 +354,7 @@
               </span>
               
                 <a href="/2018/03/04/Webpack4-0采坑实录/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://yoursite.com/2018/03/04/Webpack4-0采坑实录/" class="cy_cmt_count" data-xid="2018/03/04/Webpack4-0采坑实录/" itemprop="commentsCount" ></span>
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/03/04/Webpack4-0采坑实录/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -383,9 +382,7 @@
       
 
       
-        
-          
-            <h1 id="踩坑实录（1）-webpack4-0尝鲜升级"><a href="#踩坑实录（1）-webpack4-0尝鲜升级" class="headerlink" title="踩坑实录（1）- webpack4.0尝鲜升级"></a>踩坑实录（1）- webpack4.0尝鲜升级</h1><p>引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。<br><a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">入门Webpack，看这篇就够了</a></p>
+        <h1 id="踩坑实录（1）-webpack4-0尝鲜升级"><a href="#踩坑实录（1）-webpack4-0尝鲜升级" class="headerlink" title="踩坑实录（1）- webpack4.0尝鲜升级"></a>踩坑实录（1）- webpack4.0尝鲜升级</h1><p>引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。<br><a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">入门Webpack，看这篇就够了</a></p>
 <p>原因是这个4.0版本做了下面重大变化</p>
 <ul>
 <li>npm scripts run 不起来了，新版中将 webpack 命令行工具拆分到单独的仓库中，要额外安装 webpack-cli</li>
@@ -432,8 +429,6 @@
 <p>代码地址 ：<a href="https://github.com/Liny2016/webpack4.0TestDome" target="_blank" rel="noopener">动手试一试吧！</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
@@ -451,310 +446,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/25/欢迎来到我的博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Linyi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="梧桐树">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/25/欢迎来到我的博客/" itemprop="url">欢迎来到我的博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-25T18:10:57+08:00">2018-02-25</time>
-            
-
-            
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/导语/" itemprop="url" rel="index"><span itemprop="name">导语</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
           
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/02/25/欢迎来到我的博客/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://yoursite.com/2018/02/25/欢迎来到我的博客/" class="cy_cmt_count" data-xid="2018/02/25/欢迎来到我的博客/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>感谢你花时间阅读我的博客，这是我平时有空分享一些技术文章和心得的小博客，希望也可以帮助到你们，一起努力吧，欢迎提问，我看到会回复你们的，–致谢</p>
-</blockquote>
-<pre><code class="bash">$ <span class="built_in">let</span><span class="string">'s go man!</span>
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Linyi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="梧桐树">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/25/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-25T16:13:00+08:00">2018-02-25</time>
+              <a href="/2018/02/25/欢迎来到我的博客/" rel="next" title="欢迎来到我的博客">
+                <i class="fa fa-chevron-left"></i> 欢迎来到我的博客
+              </a>
             
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/02/25/hello-world/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://yoursite.com/2018/02/25/hello-world/" class="cy_cmt_count" data-xid="2018/02/25/hello-world/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/25/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -764,14 +485,24 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -792,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -888,6 +628,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#踩坑实录（1）-webpack4-0尝鲜升级"><span class="nav-number">1.</span> <span class="nav-text">踩坑实录（1）- webpack4.0尝鲜升级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开始安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.开始安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行-cli-打包"><span class="nav-number">1.0.2.</span> <span class="nav-text">命令行 cli 打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待续…"><span class="nav-number">1.1.</span> <span class="nav-text">待续…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的想法"><span class="nav-number">1.2.</span> <span class="nav-text">最后的想法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1022,6 +778,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
 
   
 
@@ -1052,7 +812,18 @@
 
 
   
-    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytu96FPj"></script>
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytu96FPj';
+      var conf = '4a4ebd94a3088897d367905b95f362f5';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
   
 
 
