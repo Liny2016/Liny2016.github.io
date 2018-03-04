@@ -103,18 +103,18 @@
   <meta name="keywords" content="webpack," />
 
 
-<meta name="description" content="踩坑实录（1）- webpack4.0尝鲜升级引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了 原因是这个4.0版本做了下面重大变化">
+<meta name="description" content="心得 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了  原因是这个4.0版本做了下面重大变化">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Webpack4.0采坑实录]">
+<meta property="og:title" content="[Webpack4.0尝鲜升级]">
 <meta property="og:url" content="http://yoursite.com/2018/03/04/Webpack4-0采坑实录/index.html">
 <meta property="og:site_name" content="梧桐树">
-<meta property="og:description" content="踩坑实录（1）- webpack4.0尝鲜升级引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了 原因是这个4.0版本做了下面重大变化">
+<meta property="og:description" content="心得 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了  原因是这个4.0版本做了下面重大变化">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-04T08:01:51.565Z">
+<meta property="og:updated_time" content="2018-03-04T08:05:59.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Webpack4.0采坑实录]">
-<meta name="twitter:description" content="踩坑实录（1）- webpack4.0尝鲜升级引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了 原因是这个4.0版本做了下面重大变化">
+<meta name="twitter:title" content="[Webpack4.0尝鲜升级]">
+<meta name="twitter:description" content="心得 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。入门Webpack，看这篇就够了  原因是这个4.0版本做了下面重大变化">
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>[Webpack4.0采坑实录] | 梧桐树</title>
+  <title>[Webpack4.0尝鲜升级] | 梧桐树</title>
   
 
 
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[Webpack4.0采坑实录]</h1>
+          <h1 class="post-title" itemprop="name headline">[Webpack4.0尝鲜升级]</h1>
         
 
         <div class="post-meta">
@@ -382,7 +382,7 @@
       
 
       
-        <h1 id="踩坑实录（1）-webpack4-0尝鲜升级"><a href="#踩坑实录（1）-webpack4-0尝鲜升级" class="headerlink" title="踩坑实录（1）- webpack4.0尝鲜升级"></a>踩坑实录（1）- webpack4.0尝鲜升级</h1><p>引语 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。<br><a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">入门Webpack，看这篇就够了</a></p>
+        <p>心得 : 最近webpack也升级到4.0了，看了看文档很多人的想法是，先静待一段时间，等各位大佬把坑填多一些再去学习，如果你是小白入门请往下飞行，还没有熟悉webpack的小伙伴请往下面链接导读。<br><strong><a href="https://www.jianshu.com/p/42e11515c10f" target="_blank" rel="noopener">入门Webpack，看这篇就够了</a></strong> </p>
 <p>原因是这个4.0版本做了下面重大变化<br><a id="more"></a></p>
 <ul>
 <li>npm scripts run 不起来了，新版中将 webpack 命令行工具拆分到单独的仓库中，要额外安装 webpack-cli</li>
@@ -639,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#踩坑实录（1）-webpack4-0尝鲜升级"><span class="nav-number">1.</span> <span class="nav-text">踩坑实录（1）- webpack4.0尝鲜升级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开始安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.开始安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行-cli-打包"><span class="nav-number">1.0.2.</span> <span class="nav-text">命令行 cli 打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待续…"><span class="nav-number">1.1.</span> <span class="nav-text">待续…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的想法"><span class="nav-number">1.2.</span> <span class="nav-text">最后的想法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开始安装"><span class="nav-number">1.</span> <span class="nav-text">1.开始安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行-cli-打包"><span class="nav-number">2.</span> <span class="nav-text">命令行 cli 打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待续…"><span class="nav-number"></span> <span class="nav-text">待续…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的想法"><span class="nav-number"></span> <span class="nav-text">最后的想法</span></a></div>
             
 
           </div>
