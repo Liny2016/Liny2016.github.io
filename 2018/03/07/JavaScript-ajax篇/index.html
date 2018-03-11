@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.4" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="ajax,javasript,promise," />
+
+
+<meta name="description" content="ajax全称是异步 javascript 和 XML,用来和服务端进行数据交互的,让无刷新替换页面数据成了可能;">
+<meta name="keywords" content="ajax,javasript,promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript-ajax篇">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/JavaScript-ajax篇/index.html">
+<meta property="og:site_name" content="梧桐树">
+<meta property="og:description" content="ajax全称是异步 javascript 和 XML,用来和服务端进行数据交互的,让无刷新替换页面数据成了可能;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-11T05:13:41.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript-ajax篇">
+<meta name="twitter:description" content="ajax全称是异步 javascript 和 XML,用来和服务端进行数据交互的,让无刷新替换页面数据成了可能;">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/07/JavaScript-ajax篇/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>JavaScript-ajax篇 | 梧桐树</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9c3fbd06b40ebe22c27438e243fc2ff4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">梧桐树</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">林毅的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/JavaScript-ajax篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Linyi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梧桐树">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript-ajax篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T12:11:42+08:00">2018-03-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ajax/" itemprop="url" rel="index"><span itemprop="name">ajax</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ajax/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/03/07/JavaScript-ajax篇/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/03/07/JavaScript-ajax篇/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> ajax全称是异步 javascript 和 XML,用来和服务端进行数据交互的,让无刷新替换页面数据成了可能;</p>
+<a id="more"></a>
+<h1 id="GET方式"><a href="#GET方式" class="headerlink" title="GET方式"></a>GET方式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr=<span class="keyword">new</span> XMLHttpRequest();  </span><br><span class="line">      xhr.open(<span class="string">"get"</span>, <span class="string">"servlet?name=testParam"</span>, <span class="literal">true</span>); <span class="comment">//请求类型，url参数，是否异步</span></span><br><span class="line">      xhr.send(<span class="literal">null</span>);</span><br><span class="line">      xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      	<span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>) &#123;</span><br><span class="line">      		<span class="keyword">var</span> ret = xhr.responseText;</span><br><span class="line">      		alert(ret);</span><br><span class="line">      	&#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="POST方式"><a href="#POST方式" class="headerlink" title="POST方式"></a>POST方式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr=<span class="keyword">new</span> XMLHttpRequest();  </span><br><span class="line">    xhr.open(<span class="string">"post"</span>,<span class="string">"servlet"</span>,<span class="literal">true</span>);  <span class="comment">//请求类型，url地址，是否异步</span></span><br><span class="line">    xhr.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);<span class="comment">//必须在open后面  </span></span><br><span class="line">    xhr.send(<span class="string">"name=testParam"</span>);  <span class="comment">//发送data数据</span></span><br><span class="line">    xhr.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">           <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>&amp;&amp;xhr.status==<span class="number">200</span>)&#123;  </span><br><span class="line">                 <span class="keyword">var</span> ret=xhr.responseText;  </span><br><span class="line">                 alert(ret);  </span><br><span class="line">               &#125;  </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="用promise-封装-ajax"><a href="#用promise-封装-ajax" class="headerlink" title="用promise 封装 ajax"></a>用promise 封装 ajax</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ajax函数将返回Promise对象:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">method, url, data</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">		request.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (request.status === <span class="number">200</span>) &#123;</span><br><span class="line">					resolve(request.responseText);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					reject(request.status);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		request.open(method, url);</span><br><span class="line">		request.send(data);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = ajax(<span class="string">'GET'</span>, <span class="string">'/api/categories'</span>);</span><br><span class="line"></span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span>(<span class="params">text</span>) </span>&#123; <span class="comment">// 如果AJAX成功，获得响应内容</span></span><br><span class="line">	<span class="built_in">console</span>.log(text)</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123; <span class="comment">// 如果AJAX失败，获得响应代码</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Error:'</span>, status)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="ajax的优缺点"><a href="#ajax的优缺点" class="headerlink" title="ajax的优缺点"></a>ajax的优缺点</h1><p><strong>优点：</strong><br>1.无刷新更新数据，优秀的用户体验<br>2.ajax不需要任何插件支持，可以被大多数主流浏览器支持<br>3.减少服务器和带宽的负担。在客户端创建ajax引擎，把传统方式下的服务器负担的工作转移到客户端，便于客户端资源来处理，减轻服务器和带宽的负担。</p>
+<p><strong>缺点：</strong><br>1.浏览器对XMLHttpRequest对象支持度不足。ajax大量的使用了javascript和ajax引擎,这些取决于浏览器的支持.在编写的时候考虑对浏览器的兼容性.<br>2.破坏浏览器前进和后退按钮。ajax只是局部刷新,所以页面的后退按钮是没有用的.<br>3.开发和调试工具的缺乏。js是ajax的主要组成部分，但是缺少很好的js开发和调试工具。</p>
+<h1 id="ajax跨域"><a href="#ajax跨域" class="headerlink" title="ajax跨域"></a>ajax跨域</h1><h2 id="为什么会出现跨域问题？"><a href="#为什么会出现跨域问题？" class="headerlink" title="为什么会出现跨域问题？"></a>为什么会出现跨域问题？</h2><blockquote>
+<p>出于浏览器的同源策略限制，浏览器会拒绝跨域请求。<br><em>注：严格的说，浏览器并不是拒绝所有的跨域请求，实际上拒绝的是跨域的读操作。</em></p>
+</blockquote>
+<h2 id="什么情况才算作跨域？"><a href="#什么情况才算作跨域？" class="headerlink" title="什么情况才算作跨域？"></a>什么情况才算作跨域？</h2><blockquote>
+<p>A：非同源请求，均为跨域。名词解释：同源 —— 如果两个页面拥有相同的协议（protocol），端口（port）和主机（host），那么这两个页面就属于同一个源（origin）。</p>
+</blockquote>
+<p><strong>最常用的跨域方式有以下三种：JSONP、CORS、postMessage</strong></p>
+<p>JSONP<br>单纯地为了实现跨域请求而创造的一个 trick。【实现原理】虽然因为同源策略的影响，不能通过XMLHttpRequest请求不同域上的数据（Cross-origin reads）。但是，在页面上引入不同域上的js脚本文件却是可以的（Cross-origin embedding）。因此在js文件载入完毕之后，触发回调，可以将需要的data作为参数传入。<br>【实现方式（需前后端配合）】<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">function</span> dosomething(data)&#123;</span><br><span class="line">        //处理获得的数据</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"http://example.com/data.php?callback=dosomething"</span>&gt;&lt;/script&gt;&lt;?php</span><br><span class="line"><span class="variable">$callback</span> = <span class="variable">$_GET</span>[<span class="string">'callback'</span>];//得到回调函数名</span><br><span class="line"><span class="variable">$data</span> = array(<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>);//要返回的数据</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$callback</span>.<span class="string">'('</span>.json_encode(<span class="variable">$data</span>).<span class="string">')'</span>;//输出</span><br><span class="line">?</span><br></pre></td></tr></table></figure></p>
+<p>【JSONP的优缺点】<br>优点：兼容性好（兼容低版本IE）<br>缺点：</p>
+<p>1.JSONP只支持GET请求； </p>
+<p>2.XMLHttpRequest相对于JSONP有着更好的错误处理机制</p>
+<p>CORS 是W3C 推荐的一种新的官方方案，能使服务器支持 XMLHttpRequest 的跨域请求。CORS 实现起来非常方便，只需要增加一些 HTTP 头，让服务器能声明允许的访问来源。</p>
+<blockquote>
+<p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。</p>
+</blockquote>
+<p>服务端(node)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>,req.header.origin);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Credentails'</span>,<span class="literal">true</span>);//告诉客户端可以在http请求中加上cookie</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Method'</span>,<span class="string">'POST,GET,PUT,DELETE,OPTIONS'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>CORS由于存在兼容性问题，所以使用的时候需要做特殊判断</p>
+<p>与JSONP的比较<br>CORS与JSONP的使用目的相同，但是比JSONP更强大。</p>
+<p>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。<br>JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
+<p><em>附注:理解promise</em></p>
+<p>看一段很简单的代码，请注意阅读代码中的注释。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> val = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们假设step1, step2, step3都是ajax调用后端或者是</span></span><br><span class="line"><span class="comment">// 在Node.js上查询数据库的异步操作</span></span><br><span class="line"><span class="comment">// 每个步骤都有对应的失败和成功处理回调</span></span><br><span class="line"><span class="comment">// 需求是这样，step1、step2、step3必须按顺序执行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">step1</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'步骤一：执行'</span>);</span><br><span class="line">    <span class="keyword">if</span> (val &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'Hello I am No.1'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="number">0</span>) &#123;</span><br><span class="line">        reject(val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">step2</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'步骤二：执行'</span>);</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="number">1</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'Hello I am No.2'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="number">0</span>) &#123;</span><br><span class="line">        reject(val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">step3</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'步骤三：执行'</span>);</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="number">1</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'Hello I am No.3'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="number">0</span>) &#123;</span><br><span class="line">        reject(val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(step1).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.info(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(step2);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.info(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(step3);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.info(val);</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.info(val);</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'外部步骤：执行'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行之后将会打印</span></span><br><span class="line">步骤一：执行</span><br><span class="line">外部步骤：执行</span><br><span class="line">Hello I am No<span class="number">.1</span></span><br><span class="line">步骤二：执行</span><br><span class="line">Hello I am No<span class="number">.2</span></span><br><span class="line">步骤三：执行</span><br><span class="line">Hello I am No<span class="number">.3</span></span><br><span class="line">Hello I am No<span class="number">.3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>笔者认为，Promise的意义就在于 then 链式调用 ，它避免了异步函数之间的层层嵌套，将原来异步函数的 嵌套关系 转变为便于阅读和理解的 链式步骤关系 。</p>
+</blockquote>
+<p><strong>Promise常用的关键点</strong></p>
+<p>在Promise定义时，函数已经执行了<br>Promise构造函数只接受一个参数，即带有异步逻辑的函数。这个函数在 new Promise 时已经执行了。只不过在没有调用 then 之前不会 resolve 或 reject。</p>
+<p>在then中的resolve方法中如何return?<br>在then方法中通常传递两个参数，一个 resolve 函数，一个 reject 函数。reject暂时不讨论，就是出错的时候运行的函数罢了。resolve 函数必须返回一个值才能把链式调用进行下去，而且这个值返回什么是有很大讲究的。</p>
+<p>resolve 返回一个新 Promise</p>
+<p>返回一个新Promise之后再调用的then就是新Promise中的逻辑了。</p>
+<p>resolve 返回一个值</p>
+<p>返回一个值会传递到下一个then的resolve方法参数中。</p>
+<blockquote>
+<p>就先分享到这吧,待续补充知识点和更新~~</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
+          
+            <a href="/tags/javasript/" rel="tag"># javasript</a>
+          
+            <a href="/tags/promise/" rel="tag"># promise</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/04/javascript-基础篇/" rel="next" title="javascript-基础篇">
+                <i class="fa fa-chevron-left"></i> javascript-基础篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Linyi" />
+            
+              <p class="site-author-name" itemprop="name">Linyi</p>
+              <p class="site-description motion-element" itemprop="description">大道至简,开发由我</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Liny2016" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:782279031@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GET方式"><span class="nav-number">1.</span> <span class="nav-text">GET方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POST方式"><span class="nav-number">2.</span> <span class="nav-text">POST方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用promise-封装-ajax"><span class="nav-number">3.</span> <span class="nav-text">用promise 封装 ajax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ajax的优缺点"><span class="nav-number">4.</span> <span class="nav-text">ajax的优缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ajax跨域"><span class="nav-number">5.</span> <span class="nav-text">ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会出现跨域问题？"><span class="nav-number">5.1.</span> <span class="nav-text">为什么会出现跨域问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况才算作跨域？"><span class="nav-number">5.2.</span> <span class="nav-text">什么情况才算作跨域？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Linyi</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.4"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytu96FPj';
+      var conf = '4a4ebd94a3088897d367905b95f362f5';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
